@@ -20,11 +20,7 @@ class LinearRegression:
         self.residuals = self.y - self.y_hat
         self.R2 = self.R_squared()
 
-    def predict(self, X):
-        X = np.column_stack((np.ones(len(X)), X))
-        return X @ self.beta
-
-    # ----- Sum och Squares -----
+    # ----- Sum and Squares -----
 
     def OLS(self):
         self.beta = np.linalg.inv(self.X.T @ self.X) @ self.X.T @ self.y
@@ -82,7 +78,7 @@ class LinearRegression:
     
     # ----- Confidence Intervals -----
 
-    def confidence_intervals(self, alpha= 0.05):
+    def confidence_intervals(self, alpha):
         t_crit = scipy.stats.t.ppf(1 - alpha/2, df=self.n - self.d -1)
         S = np.sqrt(self.SSE() / (self.n - self.d - 1))
         se = S * np.sqrt(np.diag(np.linalg.inv(self.X.T @ self.X)))
