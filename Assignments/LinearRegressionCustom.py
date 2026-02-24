@@ -19,6 +19,7 @@ class LinearRegression:
         self.y_hat = self.X @ self.beta
         self.residuals = self.y - self.y_hat
         self.R2 = self.R_squared()
+        self.alpha = 1 - self.R2
 
     # ----- Sum and Squares -----
 
